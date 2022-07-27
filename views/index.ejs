@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%-include('./head')%>
+<body>
+    <section class="header-body">
+        <%-include('./nav')%>
+        <section class="blog-container">
+            <%if(blogs.length > 0){%>
+                <%blogs.forEach((blog) => {%>    
+                    <section class="blog-father">
+                        <a class="creator-link"><h4 class="blog-creator"><%=blog.creator%></h4></a>
+                        <p class="blog-text"><%=blog.text.substring(0,30)%>...</p>
+                    </section>
+                <%})%>    
+            <%}else{%>
+            <h4 class="depricate">No blogs to show</h4> 
+            <%}%>    
+        </section>
+    </section>    
+    <div><%-include('./footer')%></div>
+    
+    
+</body>
+    <script>
+
+        let blogsHtml = document.querySelectorAll('section.blog-father')
+        let blogsCreators = document.querySelectorAll('h4.blog-creator')
+        for(let i = 0;i<blogsHtml.length;i++){
+            blogsHtml[i].addEventListener('click', () => {
+                console.log('clicked on '+blogsCreators[i].textContent.trim())
+                fetch(`/${blogsCreators[i].textContent.split(' ')[0].trim()}`, {
+                    method:'GET',
+                    status:200.
+                })
+            })
+        }
+        let links = document.querySelectorAll('a.creator-link')
+        for(let i = 0;i<blogsCreators.length;i++){
+            blogsCreators[i].addEventListener('click', () => {
+                links[i].setAttribute('href', blogsCreators[i].textContent.trim().split(' ')[0].toLowerCase())
+            })
+        }
+        let listItems = document.getElementsByClassName('list-item')
+        let previos = listItems[0]
+        console.log(listItems)
+        previos.classList.add('active')
+        for(let i = 0;i<listItems.length;i++){
+            listItems[i].addEventListener('click', () => {
+                listItems[i].classList.add('active')
+                previos.classList.remove('active')
+                previos = listItems[i]
+            })
+        }
+
+
+    </script>
+</html>

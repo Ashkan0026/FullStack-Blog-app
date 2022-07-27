@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<%-include('./head')%>
+
+<body>
+    <section class="header-body">
+        <%-include('./nav')%>
+        <section class="middle">
+            <section class="each-con">
+                <h4 class="blog-creator create">Creator : <%=blog.creator%></h4>
+                <h4 class="create">Title : <%=blog.title%></h4>
+                <h5 class="blog-date page">Date : <%=blog.date%></h5>
+                <p class="blog-text area"><%=blog.text%></p>
+                <section class="comments">
+                    <%if(blog.comments.length > 0){%>
+                        <h4 class="page">Comments </h4>
+                        <%blog.comments.forEach(comment => {%>
+                            <section class="comment-container">
+                                <h4 class="comment-head"><%=comment.person%></h4>    
+                                <p class="blog-text"><%=comment.comment%></p>
+                            </section>    
+                        <%})%>    
+                    <%}else{%>
+                       <h4 class="depricate">No Comments</h4> 
+                    <%}%>    
+                </section>
+            </section>
+            <form class="form" method="post" action=""+blog.creator>
+                <label class="label" for="person">Your Name</label>
+                <input class="input" name="person" type="text"/>
+                <label class="label" for="comment">Comment</label>
+                <input class="input" name="comment" type="text"/>
+                <button class="btn" type="submit">Submit</button>
+            </form>
+        </section>      
+    </section>    
+    <section><%-include('./footer')%></section>
+
+</body>
+<script>
+
+</script>
+</html>

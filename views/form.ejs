@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<%-include('./head')%>
+<body>
+    <%-include('./nav')%>
+    <form class="form" method="post" action="/">
+        <label class="label" for="creator">CreatorName</label>
+        <input type="text" name="creator" class="input"/>
+        <label class="label" for="title">Title</label>
+        <input class="input" type="text" name="title"/>
+        <label class="label" for="text">Text</label>
+        <input class="input text" name="text" type="text">
+        <button class="btn" type="submit">Submit</button>
+    </form>
+    <div><%-include('./footer')%></div>
+</body>
+<script>
+    let listItems = document.getElementsByClassName('list-item')
+    let previos = listItems[1]
+    console.log(listItems)
+    previos.classList.add('active')
+    for(let i = 0;i<listItems.length;i++){
+        listItems[i].addEventListener('click', () => {
+            listItems[i].classList.add('active')
+            previos.classList.remove('active')
+            previos = listItems[i]
+        })
+    }
+</script>
+</html>

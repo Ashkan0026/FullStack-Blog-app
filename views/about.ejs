@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<%-include('./head')%>
+<body>
+    <%-include('./nav')%>
+    <section>
+        This website is a website for generating scienstific and teoric blogs about different concepts
+    </section>
+    <div><%-include('./footer')%></div>
+    
+</body>
+<script>
+    let listItems = document.getElementsByClassName('list-item')
+    let previos = listItems[2]
+    console.log(listItems)
+    previos.classList.add('active')
+    for(let i = 0;i<listItems.length;i++){
+        listItems[i].addEventListener('click', () => {
+            listItems[i].classList.add('active')
+            previos.classList.remove('active')
+            previos = listItems[i]
+        })
+    }
+</script>
+</html>
